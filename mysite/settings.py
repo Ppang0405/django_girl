@@ -25,12 +25,21 @@ SECRET_KEY = 'n_^&e+1ns=gly8cnx*dq_46#c4^)qsch*7hn6rpkq@mpgy5=@0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+'''
+When DEBUG is True and ALLOWED_HOSTS is empty,
+the host is validated against ['localhost', '127.0.0.1', '[::1]'].
+This won't match our hostname on PythonAnywhere once we deploy our application
+so we will change the following setting:
+'''
+
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'blog.apps.BlogConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -104,8 +113,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'de-ch'
 
 TIME_ZONE = 'UTC'
+# TIME_ZONE = 'Europe/Berlin'
 
 USE_I18N = True
 
@@ -118,3 +129,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
